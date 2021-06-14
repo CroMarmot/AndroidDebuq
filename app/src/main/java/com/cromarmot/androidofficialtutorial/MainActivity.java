@@ -8,22 +8,32 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import io.reactivex.rxjava3.core.Flowable;
+
 public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    static final String TAG = MainActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // TODO remove RxJava Demo
+        Flowable.just("Hello world").subscribe((d) -> Log.i(TAG, d));
     }
-    /** Called when the user taps the Send button */
+
+    /**
+     * Called when the user taps the Send button
+     */
     public void sendMessage(View view) {
-        // Do something in response to button
-        Log.d("button", "clicked");
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        Intent intent = new Intent(this, AppUsageActivity.class);
         EditText editText = (EditText) findViewById(R.id.editText);
         String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
+        intent.putExtra(AppUsageActivity.EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+
+    public void PieChartActivity(View view) {
+        Intent intent = new Intent(this, PieChartActivity.class);
         startActivity(intent);
     }
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="viewGithub" type="id" />
+    <item name="actionToggleValues" type="id" />
+    <item name="actionToggleIcons" type="id" />
+    <item name="actionToggleHole" type="id" />
+    <item name="actionToggleMinAngles" type="id" />
+    <item name="actionToggleCurvedSlices" type="id" />
+    <item name="actionDrawCenter" type="id" />
+    <item name="actionToggleXValues" type="id" />
+    <item name="actionTogglePercent" type="id" />
+    <item name="animateX" type="id" />
+    <item name="animateY" type="id" />
+    <item name="animateXY" type="id" />
+    <item name="actionToggleSpin" type="id" />
+    <item name="actionSave" type="id" />
+</resources>

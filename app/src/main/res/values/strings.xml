@@ -2,4 +2,6 @@
     <string name="app_name">AOT</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
+    <string name="dash">...</string>
+    <string name="button_piechartactivity">PieChartActivity</string>
 </resources>

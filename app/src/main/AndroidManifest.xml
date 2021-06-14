@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cromarmot.androidofficialtutorial">
-    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
-    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
 
     <application
         android:allowBackup="true"
@@ -12,12 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidOfficialTutorial">
-        <activity android:name=".DisplayMessageActivity"
+
+        <activity
+            android:name=".AppUsageActivity"
             android:parentActivityName=".MainActivity">
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".PieChartActivity"
+            android:parentActivityName=".MainActivity">
         </activity>
 
         <activity android:name=".MainActivity">
@@ -29,4 +29,8 @@
         </activity>
     </application>
 
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
 </manifest>
