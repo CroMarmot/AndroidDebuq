@@ -67,7 +67,6 @@ public class PieChartActivity extends ChartBaseActivity implements OnChartValueS
         chart.setHoleRadius(80f);
         chart.setTransparentCircleRadius(120f);
 
-
         chart.setRotationAngle(0);
         chart.setRotationEnabled(true);
         chart.setHighlightPerTapEnabled(true);
