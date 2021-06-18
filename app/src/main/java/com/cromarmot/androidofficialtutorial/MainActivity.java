@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // TODO remove RxJava Demo
         Flowable.just("Hello world").subscribe((d) -> Log.i(TAG, d));
+        Log.i(TAG, "Android API Version: " + AndroidUtils.fetchVersion());
     }
 
     /**
@@ -29,11 +30,6 @@ public class MainActivity extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.editText);
         String message = editText.getText().toString();
         intent.putExtra(AppUsageActivity.EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }
-
-    public void PieChartActivity(View view) {
-        Intent intent = new Intent(this, PieChartActivity.class);
         startActivity(intent);
     }
 

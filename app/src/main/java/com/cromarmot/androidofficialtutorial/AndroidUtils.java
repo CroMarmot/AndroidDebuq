@@ -57,7 +57,7 @@ class AndroidUtils {
                 appInfo.label = (String) pm.getApplicationLabel(pm.getApplicationInfo(packageName, pm.GET_META_DATA));
                 appInfo.cacheSize = storageStats.getCacheBytes();
                 appInfo.dataSize = storageStats.getDataBytes();
-                appInfo.apkSize = storageStats.getAppBytes();
+                appInfo.appSize = storageStats.getAppBytes();
                 appInfos.add(appInfo);
             }
         } catch (Exception e) {
@@ -91,7 +91,7 @@ class AndroidUtils {
                                 AppInfo rai = new AppInfo(ai.packageName);
                                 rai.dataSize = pStats.dataSize;
                                 rai.cacheSize = pStats.cacheSize;
-                                rai.apkSize = pStats.codeSize;
+                                rai.appSize = pStats.codeSize;
                             }
                         }
                     });

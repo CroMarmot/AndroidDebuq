@@ -3,8 +3,12 @@ package com.cromarmot.androidofficialtutorial;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StatFs;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -55,7 +59,7 @@ public class PieChartActivity extends ChartBaseActivity implements OnChartValueS
         chart.getDescription().setEnabled(false);
         chart.setExtraOffsets(0, 0, 0, 0);
 
-        chart.setDragDecelerationFrictionCoef(0.95f);
+        chart.setDragDecelerationFrictionCoef(2f);
 
 
         chart.setDrawHoleEnabled(true);
@@ -100,6 +104,15 @@ public class PieChartActivity extends ChartBaseActivity implements OnChartValueS
                 displayAis = appinfos = appInfosFilter(appinfos);
             }
             setData(appInfos2PieEntries(appinfos));
+
+            List<String> elements = new ArrayList<>();
+            for (AppInfo ai : appInfos) {
+                String str = ai.appName + "\t" + ai.appSize + "\t" + ai.cacheSize + "\t" + ai.dataSize;
+                Log.i(TAG + "/AppInfo", str);
+                elements.add(str);
+            }
+            ListView lv = findViewById(R.id.listView);
+            lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, elements));
         } else {
             setData(getRandomPieEntries(10, 10));
         }
@@ -109,9 +122,9 @@ public class PieChartActivity extends ChartBaseActivity implements OnChartValueS
     private ArrayList<AppInfo> appInfosFilter(ArrayList<AppInfo> appInfos) {
         // TODO sqlite + room(orm) + rxjava
         // TODO filters
-        List<String> nameFilters = Arrays.asList("com.oneplus", "com.android");
+        List<String> nameFilters = Arrays.asList("oneplus", "com.android");
         // 1mb
-        int sizeFilter = 512 * 1024 * 1024;
+        int sizeFilter = 256 * 1024 * 1024;
         // ----------------------SIZE FILTER-------------------------------------------
         // TODO merge small packages in one
         AppInfo aiSmall = new AppInfo("Small packages");
@@ -122,7 +135,7 @@ public class PieChartActivity extends ChartBaseActivity implements OnChartValueS
             Log.d(TAG, "appInfosFilter::Small packages" + appInfo.appName + "\t" + appInfo.totalSize());
             // TODO provide function
             aiSmall.cacheSize += appInfo.cacheSize;
-            aiSmall.apkSize += appInfo.apkSize;
+            aiSmall.appSize += appInfo.appSize;
             aiSmall.dataSize += appInfo.dataSize;
         });
         aiSmall.appName += "(<" + (sizeFilter / 1024 / 1024) + "MB," + smallApps.size() + "个)";
@@ -143,7 +156,7 @@ public class PieChartActivity extends ChartBaseActivity implements OnChartValueS
                     // TODO provide function
                     Log.d(TAG, "appInfosFilter::Name filtered packages" + appInfo.appName + "\t" + appInfo.totalSize());
                     aiNameFiltered.cacheSize += appInfo.cacheSize;
-                    aiNameFiltered.apkSize += appInfo.apkSize;
+                    aiNameFiltered.appSize += appInfo.appSize;
                     aiNameFiltered.dataSize += appInfo.dataSize;
                 });
         appInfos = (ArrayList<AppInfo>) appInfos
@@ -154,8 +167,19 @@ public class PieChartActivity extends ChartBaseActivity implements OnChartValueS
                         .size() == 0)
                 .collect(Collectors.toList());
         // -----------------------------------------------------------------
+        AppInfo aiEmpty = new AppInfo("Empty Space");
+        StatFs sf = new StatFs(Environment.getExternalStorageDirectory().getPath());
+        aiEmpty.dataSize = sf.getAvailableBytes();
+
+        Log.i(TAG, "appInfosFilter::getAvailableBytes():" + sf.getAvailableBytes());
+        Log.i(TAG, "appInfosFilter::getFreeBytes():" + sf.getFreeBytes());
+        Log.i(TAG, "appInfosFilter::getTotalBytes():" + sf.getTotalBytes());
+        // -----------------------------------------------------------------
+
         appInfos.add(aiSmall);
         appInfos.add(aiNameFiltered);
+        appInfos.add(aiEmpty);
+
         // TODO add Empty part
         return appInfos;
     }
@@ -244,7 +268,7 @@ public class PieChartActivity extends ChartBaseActivity implements OnChartValueS
         TextView tv_app_label = findViewById(R.id.app_label);
         if (displayAis == null) return;
         tv1.setText(displayAis.get(index).appName);
-        tv_apk_size.setText("Apk:" + humanBytes(displayAis.get(index).apkSize));
+        tv_apk_size.setText("App:" + humanBytes(displayAis.get(index).appSize));
         tv_cache_size.setText("Cache:" + humanBytes(displayAis.get(index).cacheSize));
         tv_data_size.setText("Data:" + humanBytes(displayAis.get(index).dataSize));
         tv_app_label.setText(displayAis.get(index).label);

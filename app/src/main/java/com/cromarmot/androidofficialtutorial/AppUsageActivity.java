@@ -37,7 +37,6 @@ public class AppUsageActivity extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView);
         textView.setText(message);
-        Log.i(TAG, "Android API Version: " + AndroidUtils.fetchVersion());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -49,7 +48,7 @@ public class AppUsageActivity extends AppCompatActivity {
 
         List<String> elements = new ArrayList<>();
         for (AppInfo ai : appInfos) {
-            String str = ai.appName + "\t" + ai.apkSize + "\t" + ai.cacheSize + "\t" + ai.dataSize;
+            String str = ai.appName + "\t" + ai.appSize + "\t" + ai.cacheSize + "\t" + ai.dataSize;
             Log.i(TAG + "/AppInfo", str);
             elements.add(str);
         }
