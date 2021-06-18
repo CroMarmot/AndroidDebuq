@@ -1,4 +1,4 @@
-package com.cromarmot.androidofficialtutorial;
+package com.cromarmot.debuq.apks;
 
 import android.app.AlertDialog;
 import android.app.usage.StorageStats;

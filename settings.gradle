@@ -1,2 +1,4 @@
 rootProject.name = "AndroidOfficialTutorial"
 include ':app'
+include ':aotm1'
+include ':apks'

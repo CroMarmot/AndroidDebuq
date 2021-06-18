@@ -14,4 +14,5 @@
     <item name="animateXY" type="id" />
     <item name="actionToggleSpin" type="id" />
     <item name="actionSave" type="id" />
+    <item name="fab" type="id"/>
 </resources>

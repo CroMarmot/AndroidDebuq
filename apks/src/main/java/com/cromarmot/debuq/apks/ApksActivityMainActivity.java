@@ -1,4 +1,4 @@
-package com.cromarmot.androidofficialtutorial;
+package com.cromarmot.debuq.apks;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,22 +8,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import static com.cromarmot.androidofficialtutorial.PieChartActivity.EXTRA_APP_INFO;
+import static com.cromarmot.debuq.apks.PieChartActivity.EXTRA_APP_INFO;
 
-public class AppUsageActivity extends AppCompatActivity {
+public class ApksActivityMainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "MESSAGE";
 
-    private static final String TAG = AppUsageActivity.class.getName();
+    private static final String TAG = ApksActivityMainActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +37,15 @@ public class AppUsageActivity extends AppCompatActivity {
         textView.setText(message);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public void fetchSize(View view) {
+        Log.d(TAG, "fetchSize: CLICKED");
         List<AppInfo> appInfos = AndroidUtils.fetchApps(this);
+        Log.d(TAG, "fetchSize: " + appInfos.toString());
         if (appInfos == null || appInfos.size() == 0) {
 
             return;
         }
-        Toast.makeText(AppUsageActivity.this, "Packages:" + appInfos.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(ApksActivityMainActivity.this, "Packages:" + appInfos.size(), Toast.LENGTH_SHORT).show();
 
         // List<String> elements = new ArrayList<>();
         // for (AppInfo ai : appInfos) {
@@ -58,7 +57,7 @@ public class AppUsageActivity extends AppCompatActivity {
         // lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, elements));
 
         Intent intent = new Intent(this, PieChartActivity.class);
-        intent.putExtra(EXTRA_APP_INFO, new Gson().toJson(appInfos));
+        intent.putExtra(PieChartActivity.EXTRA_APP_INFO, new Gson().toJson(appInfos));
         startActivity(intent);
     }
 

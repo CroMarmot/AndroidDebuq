@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 
 import io.reactivex.rxjava3.core.Flowable;
 
@@ -19,18 +18,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // TODO remove RxJava Demo
         Flowable.just("Hello world").subscribe((d) -> Log.i(TAG, d));
-        Log.i(TAG, "Android API Version: " + AndroidUtils.fetchVersion());
     }
 
     /**
      * Called when the user taps the Send button
      */
     public void sendMessage(View view) {
-        Intent intent = new Intent(this, AppUsageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-        intent.putExtra(AppUsageActivity.EXTRA_MESSAGE, message);
-        startActivity(intent);
     }
 
+    public void startMain2(View v) {
+        startActivity(new Intent(this, com.example.aotm1.MainActivity.class));
+    }
+
+
+    public void startApks(View view) {
+        startActivity(new Intent(this,com.cromarmot.debuq.apks.ApksActivityMainActivity.class));
+    }
 }

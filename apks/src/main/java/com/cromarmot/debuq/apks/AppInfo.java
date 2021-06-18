@@ -1,4 +1,4 @@
-package com.cromarmot.androidofficialtutorial;
+package com.cromarmot.debuq.apks;
 
 import java.io.Serializable;
 

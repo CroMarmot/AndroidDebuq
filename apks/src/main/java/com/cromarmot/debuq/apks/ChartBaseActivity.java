@@ -1,4 +1,4 @@
-package com.cromarmot.androidofficialtutorial;
+package com.cromarmot.debuq.apks;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.github.mikephil.charting.charts.Chart;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +16,6 @@ import androidx.core.app.ActivityCompat;
 import android.view.View;
 import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.Chart;
 
 /**
  * Base class of all Activities of the Demo Application.
@@ -39,6 +39,7 @@ public abstract class ChartBaseActivity extends AppCompatActivity implements Act
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSION_STORAGE) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 saveToGallery();

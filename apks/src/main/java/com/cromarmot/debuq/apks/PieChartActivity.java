@@ -1,4 +1,4 @@
-package com.cromarmot.androidofficialtutorial;
+package com.cromarmot.debuq.apks;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -34,7 +34,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.cromarmot.androidofficialtutorial.AndroidUtils.humanBytes;
+import static com.cromarmot.debuq.apks.AndroidUtils.humanBytes;
 
 public class PieChartActivity extends ChartBaseActivity implements OnChartValueSelectedListener {
     public static final String EXTRA_APP_INFO = "APP_INFO";
