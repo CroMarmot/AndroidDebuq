@@ -18,6 +18,7 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import java.lang.reflect.InvocationTargetException;
@@ -37,6 +38,7 @@ class AndroidUtils {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
+    @NonNull
     public static List<AppInfo> fetchAppsGTO(final Context context) {
         if (!checkAppUsagePermission(context)) {
             Log.e(TAG, "Require permission");
@@ -67,6 +69,7 @@ class AndroidUtils {
     }
 
     // TODO not Implemented
+    @NonNull
     public static List<AppInfo> fetchAppsLO(Context context) {
         PackageManager pm = context.getPackageManager();
         List<AppInfo> appInfos = new ArrayList<>();

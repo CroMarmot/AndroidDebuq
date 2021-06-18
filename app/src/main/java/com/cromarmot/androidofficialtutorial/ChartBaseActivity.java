@@ -49,21 +49,6 @@ public abstract class ChartBaseActivity extends AppCompatActivity implements Act
         }
     }
 
-    protected void requestStoragePermission(View view) {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Snackbar.make(view, "Write permission is required to save image to gallery", Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ActivityCompat.requestPermissions(ChartBaseActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_STORAGE);
-                        }
-                    }).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "Permission Required!", Toast.LENGTH_SHORT)
-                    .show();
-            ActivityCompat.requestPermissions(ChartBaseActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_STORAGE);
-        }
-    }
 
     protected void saveToGallery(Chart chart, String name) {
         if (chart.saveToGallery(name + "_" + System.currentTimeMillis(), 70))

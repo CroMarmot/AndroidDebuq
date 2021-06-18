@@ -106,7 +106,7 @@ public class PieChartActivity extends ChartBaseActivity implements OnChartValueS
             setData(appInfos2PieEntries(appinfos));
 
             List<String> elements = new ArrayList<>();
-            for (AppInfo ai : appInfos) {
+            for (AppInfo ai : appinfos) {
                 String str = ai.appName + "\t" + ai.appSize + "\t" + ai.cacheSize + "\t" + ai.dataSize;
                 Log.i(TAG + "/AppInfo", str);
                 elements.add(str);

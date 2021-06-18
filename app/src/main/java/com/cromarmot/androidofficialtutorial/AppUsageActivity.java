@@ -42,18 +42,20 @@ public class AppUsageActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void fetchSize(View view) {
         List<AppInfo> appInfos = AndroidUtils.fetchApps(this);
-        Toast toast = new Toast(this);
-        toast.setText("Packages:" + appInfos.size());
-        toast.show();
+        if (appInfos == null || appInfos.size() == 0) {
 
-        List<String> elements = new ArrayList<>();
-        for (AppInfo ai : appInfos) {
-            String str = ai.appName + "\t" + ai.appSize + "\t" + ai.cacheSize + "\t" + ai.dataSize;
-            Log.i(TAG + "/AppInfo", str);
-            elements.add(str);
+            return;
         }
-        ListView lv = findViewById(R.id.listView);
-        lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, elements));
+        Toast.makeText(AppUsageActivity.this, "Packages:" + appInfos.size(), Toast.LENGTH_SHORT).show();
+
+        // List<String> elements = new ArrayList<>();
+        // for (AppInfo ai : appInfos) {
+        //     String str = ai.appName + "\t" + ai.appSize + "\t" + ai.cacheSize + "\t" + ai.dataSize;
+        //     Log.i(TAG + "/AppInfo", str);
+        //     elements.add(str);
+        // }
+        // ListView lv = findViewById(R.id.listView);
+        // lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, elements));
 
         Intent intent = new Intent(this, PieChartActivity.class);
         intent.putExtra(EXTRA_APP_INFO, new Gson().toJson(appInfos));
