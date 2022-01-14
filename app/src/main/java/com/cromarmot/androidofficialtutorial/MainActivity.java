@@ -34,4 +34,8 @@ public class MainActivity extends AppCompatActivity {
     public void startApks(View view) {
         startActivity(new Intent(this,com.cromarmot.debuq.apks.ApksActivityMainActivity.class));
     }
+
+    public void startMlTool(View view) {
+        startActivity(new Intent(this,com.example.mltool.MltoolActivityMainActivity.class));
+    }
 }

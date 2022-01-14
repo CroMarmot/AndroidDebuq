@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/aotm1" />
             <option value="$PROJECT_DIR$/apks" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/mltool" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

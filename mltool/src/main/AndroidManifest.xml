@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.mltool">
+
+    <application>
+        <activity
+            android:name=".MltoolActivityMainActivity"
+            android:exported="false" />
+
+    </application>
+
+    <queries>
+        <!-- Camera -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18"  />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+</manifest>

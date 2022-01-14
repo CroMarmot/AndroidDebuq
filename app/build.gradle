@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.cromarmot.androidofficialtutorial"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -49,4 +49,5 @@ dependencies {
 
     implementation project(':aotm1')
     implementation project(':apks')
+    implementation project(':mltool')
 }
